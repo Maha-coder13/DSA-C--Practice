@@ -1,31 +1,36 @@
 #include<iostream>
 using namespace std;
-struct node{
-  int data;
+struct node
+{
+  int value;
   node *next;
 };
-int main()
+void start(node* &head , int data)
 {
-  node *first = new node();
-  node *second = new node();
-  node *third = new node();
-  first->data = 100;
-  second->data = 150;
-  third->data = 200;
-  first->next = second;
-  second->next = third;
-  third->next = nullptr;
-  node *current = first;
-  while(current != nullptr)
+  node *newnode = new node();
+  newnode->value = data;
+  newnode->next = head;
+  head = newnode;
+}
+void func(node *head)
+{
+  node *current = head;
+  while(current != nullptr) 
   {
-    cout<<current->data;
+    cout<<current->value;
     cout<<endl;
     cout<<current->next;
     cout<<endl;
     current = current->next;
   }
-
-
-
+}
+int main()
+{
+  node *head = nullptr;
+  start(head , 30);
+  start(head,20);
+  start(head , 10);
+  func(head);
 
 }
+
